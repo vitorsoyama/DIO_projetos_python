@@ -7,6 +7,7 @@ def menu():
         [q] Sair
         [nu] criar Novo usuário
         [nc] Criar nova conta
+        [l] Listar contas
 
     ==> """
     opcao = input(menu)
@@ -70,6 +71,7 @@ def criar_usuario(lista_usuarios):
         data_nascimento = input("Digite sua data de nascimento(dd/mm/aaaa):")
         endereco = input("Digite seu endereço:")
         lista_usuarios[cpf] = {'nome':nome, 'data de nascimento': data_nascimento, 'endereço': endereco}
+        print("Usuário criado com sucesso!")
         return lista_usuarios
     else:
         print("Já existe usuário com esse CPF")
@@ -83,7 +85,17 @@ def criar_conta(lista_usuarios, lista_contas):
     else:
         numero_conta = str(len(lista_contas)+1)
         lista_contas.append([cpf,numero_conta])
+        print("Conta criada com sucesso!")
         return lista_contas
+    
+def listar_contas(lista_contas):
+    if lista_contas == []:
+        print("Não há contas cadastradas")
+    else:
+        print("Numero da conta")
+        for conta in lista_contas:
+            print(conta[1])
+    return
 
 def main():
 
@@ -118,6 +130,9 @@ def main():
         elif opcao == "q":
             print("Obrigado por usar nosso sistema")
             break
+
+        elif opcao == "l":
+            listar_contas(lista_contas)
 
         else:
             print("Operação inválida, por favor selecione novamente a operação desejada.")
